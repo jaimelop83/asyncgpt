@@ -1,24 +1,28 @@
-// Express server
-const express = require('express');
+const express = require("express");
+const path = require("path");
 
-// Configuration of the express server
-const cfg = {
-    port: process.env.PORT || 3000,
-};
-
-// Express initialization
 const app = express();
 
-// Home page route
-app.get('/', (req, res) => {
-    res.send('Hello World! This is the home page of the server. NodeJS and Express is running!');
+// Serve static files from the "static" directory
+app.use(express.static(path.join(__dirname, '..', "static")));
+
+// homepage route
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
-// chat page route
-app.get('/chat', (req, res) => {
-    res.send('This will be the chat page of the server.');
+// Serve the "page.html" file
+// remember to add '..' to go up one directory to find the static folder
+app.get("/page", (req, res) => {
+  res.sendFile(path.join(__dirname, '..', "static", "page.html"), (err) => {
+    if (err) {
+      console.log(err);
+      res.status(404).send("Page not found");
+    }
+  });
 });
+
 // Start the server
-app.listen(cfg.port, () => {
-    console.log(`Server listening on port ${cfg.port}!`);
+app.listen(3000, () => {
+  console.log("Server is listening on port 3000");
 });
