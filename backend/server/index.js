@@ -3,6 +3,8 @@ const path = require("path");
 
 const app = express();
 
+const getOpenaiResponse = require("./components/openai");
+
 // log every request to the console
 app.use((req, res, next) => {
     console.log(`${req.method} request for ${req.url}`);
@@ -14,7 +16,23 @@ app.use(express.static(path.join(__dirname, '..', "static")));
 
 // homepage route
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+    res.sendFile(path.join(__dirname, '..', "static", "home.html"), (err) => {
+        if (err) {
+          console.log(err);
+          res.status(404).send("Page not found");
+        }
+      });
+});
+
+// adding route handler for openai api
+app.get("/openai-response", async (req, res) => {
+  const prompt = "What do Chinese excel at?";
+  const model = "text-davinci-003";
+
+  const response = await getOpenaiResponse(prompt, model);
+
+  console.log(response);
+  res.send(response);
 });
 
 // Serve the "page.html" file in the static folder
