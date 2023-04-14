@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 
 // adding route handler for openai api
 app.get("/openai-response", async (req, res) => {
-  const prompt = "What do Chinese excel at?";
+  const prompt = "Is Thanos still alive?";
   const model = "text-davinci-003";
 
   const response = await getOpenaiResponse(prompt, model);
