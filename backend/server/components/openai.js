@@ -1,5 +1,7 @@
 const axios = require("axios");
 require("dotenv").config();
+// const OPENAI_API_KEY='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';
+
 console.log(process.env.OPENAI_API_KEY);
 
 const client = axios.create({

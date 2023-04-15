@@ -1,9 +1,22 @@
 const express = require("express");
 const path = require("path");
+const cors = require("cors");
+require ("dotenv").config();
 
 const app = express();
 
+// enable CORS
+app.use(cors());
+
 const getOpenaiResponse = require("./components/openai");
+
+// Add the following middleware to allow CORS requests
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 
 // log every request to the console
 app.use((req, res, next) => {
@@ -26,7 +39,8 @@ app.get("/", (req, res) => {
 
 // adding route handler for openai api
 app.get("/openai-response", async (req, res) => {
-  const prompt = "Is Thanos still alive?";
+  // const prompt = "Is Thanos still alive?";
+  const prompt = req.query.prompt;
   const model = "text-davinci-003";
 
   const response = await getOpenaiResponse(prompt, model);
@@ -52,6 +66,6 @@ app.use((req, res) => {
 });
 
 // Start the server
-app.listen(3000, () => {
-  console.log("Server is listening on port 3000");
+app.listen(3001, () => {
+  console.log("Server is listening on port 3001");
 });
