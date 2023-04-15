@@ -15,7 +15,7 @@ async function getOpenaiResponse(prompt, model) {
   const params = {
     prompt,
     model,
-    max_tokens: 100,
+    max_tokens: 200,
     temperature: 0,
   };
 
