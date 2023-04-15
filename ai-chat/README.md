@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). This App is also utilizing the Openai API in order to use the AI functionality of chatGPT. This is the FrontEnd of the application. It is perfroming a fetch operation in order to communicate with the express Node server which contains the API Key and API for openai.
 
 ## Available Scripts
 
