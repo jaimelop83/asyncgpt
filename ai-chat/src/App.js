@@ -4,7 +4,7 @@ import OpenaiPrompt from './components/OpenaiPrompt';
 
 function App() {
   return (
-    <div>
+    <div className='app-container'>
       <Logo alt="logo"/>
       <h1>Welcome to my OpenAI app!</h1>
       <OpenaiPrompt />
