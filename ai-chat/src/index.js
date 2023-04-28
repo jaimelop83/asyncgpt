@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-console.log(process.env.REACT_APP_OPENAI_API_KEY);
+// console.log(process.env.REACT_APP_OPENAI_API_KEY);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
